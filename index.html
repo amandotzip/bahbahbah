@@ -1,0 +1,92 @@
+<html>
+<link rel="stylesheet" href="style.css">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+</head>
+<title>BAH BAH BAH</title>
+<!-- <button onclick="myFunction()">Click me</button> -->
+<!-- <button onclick="show_image('https://i.imgur.com/C07fbON.jpeg', 276,110, 'Google Logo');">Add Google Logo</button> -->
+<!-- <button id="foo">BAH</button> -->
+<!-- <button onclick="music()">Music</button> -->
+<div id="start">
+    <button onclick="hideMenu()">Start</button>
+</div>
+<div id="menu" style="display: none;">
+    <button id="foo">BAH</button>
+    <!-- <button onclick="music()">Music</button> -->
+</div>
+<script type="text/javascript">
+
+    var mySound;
+    var myMusic;
+
+    function getRandomInt(max) {
+        return Math.random() * max;
+    }
+
+    function show_image(src, width, height, alt) {
+        soundInit()//must init the sound before use WITHIN function using sound
+        var img = document.createElement("img");
+        img.src = src;
+        img.width = width;
+        img.height = height;
+        img.alt = alt;
+
+        // set the position
+        img.style.position = 'absolute';
+        img.style.top = document.body.clientHeight * getRandomInt(0.65) + 'px';
+        img.style.left = document.body.clientWidth * getRandomInt(0.75) + 'px';
+
+        mySound.play();
+        document.body.appendChild(img);
+    }
+    document.getElementById('foo').addEventListener('click', () =>
+        show_image("https://i.imgur.com/I8UV5q4.png", 390, 327, 'sheep lmao'),
+
+    );
+
+    function sound(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function () {
+            this.sound.play();
+        }
+        this.stop = function () {
+            this.sound.pause();
+        }
+    }
+
+
+    function soundInit() {
+        mySound = new sound("audio/bah.mp3");
+    }
+    function musicInit() {
+        myMusic = new sound("audio/Flower Garden - Yoshi's Island.mp3");
+    }
+
+    function music() {
+        musicInit()
+        myMusic.play()
+    }
+
+
+    function hideMenu() {
+        var x = document.getElementById("menu");
+        var y = document.getElementById("start");
+        console.log(y.style.display);
+        if (y.style.display === "") {
+            music()
+            x.style.display = "block";
+            y.style.display = "none";
+
+        }
+    }
+</script>
+
+</html>
